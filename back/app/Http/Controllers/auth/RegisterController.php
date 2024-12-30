@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\InviteLink;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
@@ -20,16 +22,24 @@ class RegisterController extends Controller
     {
 
         $user =  User::create($request->all());
+
         $token1 = $user->createToken('token', ['server:update'])->plainTextToken;
         Auth::login($user);
 
+        $cod = InviteLink::create(['cod' => Str::random(20), "user_id" => $user->id]);
 
-        return response()->json(['token1' => $token1, "user" => $user], 200);
+        $user->cod;
+        $user->roles;
+        $user->class;
+        return response()->json(['token1' => $token1, "cod" => $cod, "user" => $user], 200);
     }
     public function login(Request $request)
     {
         if (Auth::attempt(['name' => $request->name, "password" => $request->password])) {
             $user = Auth::user();
+            $user->cod;
+            $user->roles;
+            $user->class;
 
             $token = $user->createToken('Bearer')->plainTextToken;
             $user = Auth::user();
@@ -47,9 +57,9 @@ class RegisterController extends Controller
     public function show(Request $request)
     {
         $user = Auth::user();
+        $user->cod;
         $user->roles;
         $user->class;
-        // return ['user' => $user];
 
         return response()->json(["user" => $user], 200);
     }

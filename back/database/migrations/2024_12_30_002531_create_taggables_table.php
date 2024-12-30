@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('taggables', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('role_id')->constrained('roles', 'id')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('class_id')->constrained('classses', 'id')->cascadeOnDelete()->cascadeOnUpdate();
-            $table->foreignId('user_id')->constrained('users', 'id')->cascadeOnDelete();
+            $table->foreignId('role_id')->nullable()->constrained('roles', 'id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('class_id')->nullable()->constrained('classses', 'id')->cascadeOnDelete()->cascadeOnUpdate();
+            $table->foreignId('user_id')->nullable()->constrained('users', 'id')->cascadeOnDelete();
 
             $table->timestamps();
         });

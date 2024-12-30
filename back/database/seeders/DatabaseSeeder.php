@@ -37,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'name' => 'mohammed',
             'phone' => '01040479006',
             'location' => 'aa',
-            'cod' => 'ss',
+     
             'email' => 'aaa@aaa',
             'password' => '123456',
 

@@ -23,7 +23,7 @@ class User extends Authenticatable
         'email',
         'location',
         'phone',
-        'cod',
+
         'password',
     ];
 
@@ -56,5 +56,9 @@ class User extends Authenticatable
     public function class()
     {
         return $this->belongsToMany(classs::class, 'taggables', "class_id", "user_id",);
+    }
+    public function cod()
+    {
+        return $this->hasOne(InviteLink::class, 'user_id');
     }
 }
