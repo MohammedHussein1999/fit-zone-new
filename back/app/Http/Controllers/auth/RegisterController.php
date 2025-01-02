@@ -11,13 +11,15 @@ use Illuminate\Support\Str;
 
 class RegisterController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
         $user = User::get();
 
 
         return response()->json(["user" => $user], 200);
     }
+
+    
     public function create(Request $request)
     {
 
